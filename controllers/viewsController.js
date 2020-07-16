@@ -18,22 +18,16 @@ app.set('views', path.join(__dirname, 'views')); // which is the "views" folder 
 */
 
 //
-exports.alerts = (req, res, next) => {
 
-  const {
-    alert
-  } = req.query; // use Query parameters ?alert and the value from URL ex: ?alert=booking to set a sub-Object in res.locals
+exports.landingPage = catchAsync(async (req, res, next) => {
 
-  if (alert === 'booking') {
-    //set res.locals for .pug file to access the property and value in .locals obj
-    res.locals.alert = "Your booking is successful! Please check your mail for a confirmation.";
-  }
 
-  next();
+  res.status(200).render('landingPage', {
+    title: 'Landing page',
+    // tours: tours
+  });
 
-};
-
-exports.landingPage = (req, res, next) => {};
+});
 
 exports.rooms = (req, res, next) => {};
 
@@ -52,3 +46,19 @@ exports.userProfile = (req, res, next) => {};
 
 
 exports.getMyTours = (req, res, next) => {};
+
+
+exports.alerts = (req, res, next) => {
+
+  const {
+    alert
+  } = req.query; // use Query parameters ?alert and the value from URL ex: ?alert=booking to set a sub-Object in res.locals
+
+  if (alert === 'booking') {
+    //set res.locals for .pug file to access the property and value in .locals obj
+    res.locals.alert = "Your booking is successful! Please check your mail for a confirmation.";
+  }
+
+  next();
+
+};
