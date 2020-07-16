@@ -1,0 +1,108 @@
+extends base
+
+//- The variable "user" and related properites are from the "locals" which has the newly queried user document assigned to req.user by authController.protect route handler function (in authController.js)
+
+//- Use mixin to replace repeated code blocks
+mixin navItem(link, itemName, iconType, isActive)
+  //- If the isActive argument as true Boolean value passed in, then add side-nav--active class to "li" element
+  //- The class "side-nav--active" will trigger css style
+  li(class=`${isActive ? 'side-nav--active': ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`img/icons.svg#icon-${iconType}`)
+        //- This itemName variable is the title of this "li" item block
+      | #{itemName}
+
+block content
+  
+  main.main
+    
+    - console.log("\x1b[33m" + '\n=== log the info of current logged-in user in account.pug (from route: /me) ===\n' + "\x1b[0m")
+    - console.log(user)
+    
+    //- div for whole view of the page at host/me route
+    .user-view
+    
+      //- Navigation content div            
+      nav.user-view__menu
+        
+        //- --Nav panel 1) for User (in unordered list with a class="side-nav")======
+        ul.side-nav
+          //- use mixin (use "+mixinName", ex: +navItem ) here to add new "li" element
+          +navItem('#', 'SettingsTest', 'settings',true)
+          +navItem('/my-tours', 'My bookings', 'briefcase')
+          +navItem('#', 'My reviews', 'star')
+          +navItem('#', 'Billing', 'credit-card')
+
+        //- --Nav panel 2) for Admin ONLY! (in unordered list with a class="side-nav")======      
+        //- 🡣 use unbuffered code hyphen "-" before "if" to use JavaScript code for if condition
+        - if (user.role === 'admin')
+          //- Use locals property "user.role" in the if statement to switch .admin-nav block
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              +navItem('#', 'Manage tours', 'map')
+              +navItem('#', 'Manage users', 'users')
+              +navItem('#', 'Manage reviews', 'map')
+              +navItem('#', 'Manage bookings', 'briefcase')   
+    
+      //- Main content div            
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Your account settings
+          
+          //- 🡣 UPDATE USER'S email and name (two options)
+          
+          //- ==== option 1) WITHOUT API. 
+          //- Use res.render in viewsController & POST method in HTML form
+          //- form.form.form-user-data(action='/submit-user-data' method='POST' enctype='multipart/form-data')
+          //- Note: ↑ Attribute: enctype='multipart/form-data' is necessary for multer package to upload files
+        
+          //- ==== option 2) WITH API. 
+          //- Use updateMe function at router.patch('/updateMe', userController.updateMe); to update user with axios sending PATCH req in js/updateSettings.js
+          form.form.form-user-data
+            .form__group
+              label.form__label(for='name') Name
+              input#userName.form__input(type='text', value=`${user.name}`, required, name='name')
+            .form__group.ma-bt-md
+              label.form__label(for='email') Email address
+              input#userEmail.form__input(type='email', value=`${user.email}`, required, name='email')            
+            
+            .form__group.form__photo-upload
+              img.form__user-photo(src=`img/users/${user.photo}`, alt='User photo')
+              //- a.btn-text(href='') Choose new photo
+              
+              //- Note: 
+              //- 1) Change above to below. accept='image/*' means all types of image file
+              //- 2) name='photo' attribute is for:
+              //-    a) multer package in userController (the middleware: exports.uploadUserPhoto = upload.single('photo'); )
+              //-    b) field name in user document
+              
+              //- label.form__label__upload(for='photo') Change my photo ! &nbsp;
+              input.form__upload(type='file', accept='image/*', id='photo', name='photo')
+              label(for='photo') Change my photo ! &nbsp;
+              //- Photo file upload function is controlled by userDataForm.addEventListener in index.js
+
+
+            .form__group.right
+              button.btn.btn--small.btn--green Save settings
+              
+        //- Horizontal line to separate sections for updating data🡡 and passowrd🡣
+        .line &nbsp;        
+        
+        //- Section for updating password
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Password change
+          form.form.form-user-password
+            .form__group
+              label.form__label(for='password-current') Current password
+              input#password-current.form__input(type='password', placeholder='(Enter your current password)', required, minlength='8',autocomplete="on")
+            .form__group
+              label.form__label(for='newPassword') New password
+              input#newPassword.form__input(type='password', placeholder='(Enter your NEW password)', required, minlength='8',autocomplete="on")
+            .form__group.ma-bt-lg
+              label.form__label(for='password-confirm') Confirm password
+              input#password-confirm.form__input(type='password', placeholder='(Enter your NEW password again)', required, minlength='8',autocomplete="on")
+            .form__group.right
+              //- add one more class as "btn--save-passowrd" to make it unique
+              button.btn.btn--small.btn--green.btn--save-passowrd Save password
