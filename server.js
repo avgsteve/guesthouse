@@ -98,7 +98,7 @@ dotenv.config({
 
 
 //use DB and replace password string with env
-const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD);
+const DB = process.env.DATABASE.replace("<password>", process.env.DATABASE_PASSWORD);
 
 // ------- Mongoose ------------
 

@@ -73,7 +73,7 @@ router.get('/signup',
 router.get('/profile',
   // authController.protect,
   authController.isLoggedIn,
-  viewsController.getAccount);
+  viewsController.userProfile);
 
 // User's booking data
 router.get('/my-tours',

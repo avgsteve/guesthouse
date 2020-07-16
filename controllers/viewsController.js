@@ -40,13 +40,15 @@ exports.rooms = (req, res, next) => {};
 
 exports.getAllTours = (req, res, next) => {};
 
-
 exports.getSingleTour = (req, res, next) => {};
 
 
 exports.getLoginForm = (req, res, next) => {};
 
 exports.signUp = (req, res, next) => {};
+
+
+exports.userProfile = (req, res, next) => {};
 
 
 exports.getMyTours = (req, res, next) => {};
