@@ -29,25 +29,20 @@ dotenv.config({
 
 //import the relocated codes for route-handlers and router from corresponding files
 const AppError = require('./utils/appError'); // appError.js
-const globalErrorHandler = require('./controllers/errorController'); // appError.js
-// const tourRouter = require('./routes/tourRoutes'); // tourRoutes.js
-// const userRouter = require('./routes/userRoutes'); // userRoutes.js
-// const reviewRouter = require('./routes/reviewRoutes');
-// const bookingRouter = require('./routes/bookingRoutes');
-//
-// const bookingController = require('./controllers/bookingController');
-//
-// const viewRouter = require('./routes/viewRoutes');
+const globalErrorHandler = require('./controllers/errorController');
+const viewRouter = require('./routes/viewRoutes');
+
+
+
+// Server settings from file
 const startServer = require('./server'); // server.js
 
-
+// Use express.js
 const app = express();
 
-// For deploying on Heroku as it uses proxy
-app.enable('trust proxy');
-//
-app.set('view engine', 'pug');
-//And create a path with a joined path name
+app.enable('trust proxy'); // For deploying on Heroku as it uses proxy
+
+app.set('view engine', 'pug'); //And create a path with a joined path name
 app.set('views', path.join(__dirname, 'views')); // which is the "views" folder relatively located under app.js current folder
 
 
@@ -120,7 +115,6 @@ app.use(express.urlencoded({
 // === Parsing Cookie from client request ===
 app.use(cookieParser()); // will display req.cookie in test middle ware
 
-
 // === Data sanitization against NoSQL query injection attack ===
 app.use(mongoSanitize()); //https://www.npmjs.com/package/express-mongo-sanitize
 
@@ -136,12 +130,6 @@ app.use(hpp({
 app.use(compression()); //https://github.com/expressjs/compression#options
 
 
-// //for testing middleware
-// app.use((req, res, next) => {
-//   console.log('\n\n=== this is a middleware log from app.js\n');
-//   next();
-// });
-//
 app.use(responseSize((req, res, size) => {
   const stat = `${req.method} - ${req.url.replace(/[:.]/g, '')}`;
   const convertedSize = Math.round(size / 1024);
@@ -149,8 +137,6 @@ app.use(responseSize((req, res, size) => {
 
   console.log("\nSize of current reponse:" + "\x1b[33m" + ` ${outputSize} (${size}bytes)` + "\x1b[0m");
 
-  // fs.appendFile(path.join(__dirname, '..', 'logs', 'benchmark-size.csv'), `${stat},${outputSize}\n`);
-  // IE: shove into a database for further analysis, wait, spreadsheets are databases, right?
 }));
 
 
@@ -171,9 +157,6 @@ app.use((req, res, next) => {
   var formatter = new Intl.DateTimeFormat('zh-tw', optionsForTime); //  https://www.science.co.il/language/Locale-codes.php
   var localTime = formatter.format(new Date());
 
-  // req.requestTime = new Date()
-  //   .toISOString(); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-
   console.log("\x1b[33m" + "\n\n\n--// === Start of Test middle ware === //--\n" + "\x1b[0m");
   console.log("\x1b[0m" + "\nCurrent log time is: " + localTime + "\x1b[0m" + "\n");
   //  ---- end of Time stamp setting ----
@@ -191,28 +174,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// 2) ============== ROUTE-HANDLERS (moved to ./routes/tourRoutes.js &  ./routes/userRoutes.js)
-// ex:  const getAllTours = (req, res) => { ....
+// 2) ============== ROUTE-HANDLERS (moved to ./routes/tourRoutes.js
+
 
 // 3) ============== ROUTES ()
-// app.use('/', viewRouter);
-
-// --->>> 3-1)  *針對 tour 跟 user的 express.Router (middleware) 設定
-// --->>> const tourRouter = express.Router();      //移到 tourRouter.js
-
-// --->>> 3-2) 將 tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);    移到 tourRouter.js，針對此URI '/api/v1/tours'  改為使用 tourRouter middleware的方式作為 router
-// app.use('/api/v1/tours', tourRouter);
-// app.use('/api/v1/tours', cors(), tourRouter); // Allow cors for this route
-
-
-// --->>> 3-3) 將 route actions for users  //移到 tourRouter.js，針對此URI '/api/v1/users'  改為使用 middleware的方式作為 router
-// app.use('/api/v1/users', userRouter);
-
-// //
-// app.use('/api/v1/reviews', reviewRouter);
-//
-// //
-// app.use('/api/v1/bookings', bookingRouter);
+app.use('/', viewRouter);
 
 
 // =============== GLOBAL ERROR HANDLING MIDDLEWARE ===============

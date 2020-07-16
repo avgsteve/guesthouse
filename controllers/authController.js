@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 /*jshint esversion: 8 */
-const User = require('./../models/userModel');
+// const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const AppError = require('./../utils/appError');
