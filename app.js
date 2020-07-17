@@ -32,11 +32,6 @@ const AppError = require('./utils/appError'); // appError.js
 const globalErrorHandler = require('./controllers/errorController');
 const viewRouter = require('./routes/viewRoutes');
 
-
-
-// Server settings from file
-const startServer = require('./server'); // server.js
-
 // Use express.js
 const app = express();
 

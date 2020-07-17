@@ -21,10 +21,15 @@ app.set('views', path.join(__dirname, 'views')); // which is the "views" folder 
 
 exports.landingPage = catchAsync(async (req, res, next) => {
 
+  const data = {
+    name: "test",
+  };
 
   res.status(200).render('landingPage', {
     title: 'Landing page',
     // tours: tours
+    pageLocation: "index",
+    data: data,
   });
 
 });
