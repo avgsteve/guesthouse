@@ -5,7 +5,7 @@ const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
 // const bookingController = require('../controllers/bookingController');
 
-const router = express.Router();
+const router = express.Router(); //test for rebase merge
 
 // ***The authController.isLoggedIn middle ware can store document
 // from a logged-in user in response as "res.locals.user"
