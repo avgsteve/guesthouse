@@ -3,7 +3,7 @@
 const express = require('express');
 const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
-const bookingController = require('../controllers/bookingController');
+// const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
 
@@ -32,14 +32,12 @@ router.get('/', (req, res) => {
 });
 */
 
-
 // Set alert message in res.locals.alert for.pug template to render corresponding alert message as pop-up in page
-router.use(viewsController.alerts);
+// router.use(viewsController.alerts);
 
 // default page for all tours
 router.get('/',
-  authController.isLoggedIn,
-  viewsController.getOverview);
+  viewsController.landingPage);
 
 /*Note: authController.isLoggedIn,
   will check JWT in cookie and assign user data to res.locals
@@ -47,31 +45,40 @@ router.get('/',
   for other functions to use the locals data
 */
 
+router.get('/rooms',
+  viewsController.rooms);
+
+// For listing all
+// link from: overview.pug -->  a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+router.get('/tour/',
+  viewsController.getAllTours);
+
 // For routing to the individual page for tour details
 // link from: overview.pug -->  a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
 router.get('/tour/:slug',
-  authController.isLoggedIn,
-  viewsController.getTour);
+  // authController.isLoggedIn,
+  viewsController.getSingleTour);
 
 // Routing user to login page
 router.get('/login',
   authController.isLoggedIn,
   viewsController.getLoginForm);
 
+// Routing user to login page
+router.get('/signup',
+  authController.isLoggedIn,
+  viewsController.signUp);
+
 // User's personal data, reviews and password reset
-router.get('/me',
-  authController.protect,
-  viewsController.getAccount);
+router.get('/profile',
+  // authController.protect,
+  authController.isLoggedIn,
+  viewsController.userProfile);
 
 // User's booking data
 router.get('/my-tours',
   authController.protect,
   viewsController.getMyTours);
-
-
-// Using form's attribute: action='/submit-user-data' method='POST' to update data
-// Then reload the page by rendering account.pug file with the data from res.locals
-router.post('/submit-user-data', authController.protect, viewsController.updateUserData);
 
 
 

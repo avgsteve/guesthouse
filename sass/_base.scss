@@ -1,0 +1,79 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // Set rem : 10px/16px = 62.5% -> 1rem = 10px
+}
+
+body {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  //
+}
+
+header {
+  position: relative;
+  // top: -13vh;
+  height: 100vh;
+  z-index: -10;
+  width: 100vw;
+  background-color: grey;
+
+  &.index {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include background-image-fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &.intro {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include background-image-fixed;
+  }
+
+  &.rooms {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include background-image-fixed;
+  }
+
+  &.booking {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include background-image-fixed;
+  }
+
+  &.signIn {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include background-image-fixed;
+  }
+}
+
+main {
+  box-sizing: border-box;
+}
+
+section {
+  padding: 5rem 1vw;
+
+  &.section {
+    &--1 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100vh;
+    }
+
+    &--2 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+}

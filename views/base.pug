@@ -1,56 +1,59 @@
-<!--  ref: https://pugjs.org/language/doctype.html -->
+<!--  ref: https://pugjs.org/language/doctype.html --> //-
 
 doctype html
-
-html
+html(lang='en', dir='ltr')
   head
-    block head
-      meta(charset='UTF-8')
-      meta(name='viewport' content='width=device-width, initial-scale=1.0')
-
-      // === For CSS and materials: ===
-      // Normal way of using CSS file in HTML: <link rel="stylesheet" href="css/style.css"/>
-      // All the related file will be serverd via Middle ware function in app.js used for Node.js:
-      // app.use(express.static(path.join(__dirname, 'public')));
-      link(rel="stylesheet" href="/css/style.css")
-      link(rel="shortcut icon" type='image/png' href="/img/favicon.png")
-      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
-      //- In the tour.pug file, the code : block append head
-      //- will append the script file and its source path back to this base.pug's block "head section"
-
-
-      //- #{variable} will be pug syntax like template literal in ES6
-      //- and get value from "locals" variable's value from the route handler
-      <title>  Guesthouse & Tour </title>
-        
-
-  //- data-alert attibute is set with the obj "alert" from "req.locals" when booking is created successful via getCheckoutSession.bookingController.js
-  body(data-alert=`${alert ? alert : ""}`)
-    //- If "alert" exists (req.locals.alert), write the value from req.locals.alert to the value of data-alert attribute
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    // === For CSS and materials: ===
+    // Normal way of using CSS file in HTML: <link rel="stylesheet" href="css/style.css"/>
+    // All the related file will be serverd via Middle ware function in app.js used for Node.js:
+    // app.use(express.static(path.join(__dirname, 'public')));
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='shortcut icon', type='image/png', href='/img/favicon.png')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+    title  Guesthouse & Tour 
+      
+      
+  body
     
-    // HEADER
-    include _header
-        
-    // CONTENT
-    block content
-      h1 This is a placeholder heading
+    nav.nav
+      ul.nav-items-container
+        li.nav__item
+          a.nav__item--link(href='#')
+            span.textLink Intro
+        li.nav__item
+          a.nav__item--link(href='#')
+            span.textLink Rooms
+        li.nav__item
+          a.nav__item--link(href='#')
+            span.textLink Food
+        li.nav__item
+          a.nav__item--link(href='#')
+            span.textLink Booking
+        li.nav__item
+          a.nav__item--link(href='#')
+            span.textLink Log In
+          
+    header.index
+      h1 h1 heading
+      h2 h2 heading
+      
+    .main-section
+      section.section--1
+        h2 section 1
+      section.section--2.card-container
+        h2
+          | section 2
+        .card
+          .card--description
+            h3 card 1
+          .card--description
+            p card--description
+        .card
+          h3 card 2
+        .card
+          h3 card 3
+      section#map.section--3
 
-    // FOOTER
-    include _footer
-    
-    // JavaScript files    
-    //- Axios
-    //- script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
-    //- script(src='/js/mapbox.js')
-    //- script(src='/js/login.js')
-
-    //- 
-    //- ref:  https://stripe.com/docs/js/including
-    script(src="https://js.stripe.com/v3/")
-
-    //- all script files will be bundled together into one single .js file
-    script(src='/js/bundle.js')
-
-        
-        
-        
+  include _footer      
