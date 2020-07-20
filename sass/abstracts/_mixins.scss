@@ -11,11 +11,21 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-@mixin background-image-fixed {
+@mixin header-background-image {
+  //to be used in .header.index
+  // width: auto;
+  // height: auto;
   background-position: center center;
   background-repeat: no-repeat;
-  // background-attachment: fixed;
   background-size: cover;
+  // margin-bottom: -80px;
+  // z-index: 50;
+}
+//
+//
+@mixin background-color-gredient-1 {
+  background-image: linear-gradient(to bottom, #e6e3a8, #ecdeac, #eed9b2, #eed5b8, #ead2bf, #e5d3c0, #e1d4c2, #ddd5c4, #d5d9c6, #cbddcc, #c2e0d6, #bce2e2);
+  //https://mycolor.space/gradient3?ori=to+bottom&hex=%23E6E3A8&hex2=%23E2D0C7&hex3=%23BCE2E2&submit=submit
 }
 // MEDIA QUERY MANAGER
 /*

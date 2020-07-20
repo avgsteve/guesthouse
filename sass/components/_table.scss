@@ -1,0 +1,27 @@
+#table-rooms {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table-rooms td,
+#table-rooms th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table-rooms tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#table-rooms tr:hover {
+  background-color: #ddd;
+}
+
+#table-rooms th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}

@@ -1,42 +1,69 @@
+header {
+  // position: relative;
+  height: 100vh;
+  z-index: 50;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  // margin-right: 20vw;
+  // margin: 50px;
+  &.homeIcon {}
+
+  &.index {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include header-background-image;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    // margin-bottom: -80px;
+  }
+
+  &.rooms {
+    background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    @include header-background-image;
+  }
+
+  &.extra {
+    // background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    // @include header-background-image;
+    height: 0;
+  }
+
+  &.contact {
+    // background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    // @include header-background-image;
+  }
+
+  &.signIn {
+    // background: url("../img/index-bg-bird-eye-photogrpahy-of-beachline.jpg");
+    // @include header-background-image;
+    height: 0;
+  }
+}
+
 .header {
-  &__logo {
-    height: 3rem;
-    justify-self: center;
-  }
-
-  &__btn {
-    align-self: start;
-    justify-self: start;
-  }
-
-  &__seenon-text {
-    display: grid;
-    grid-template-columns: 1fr max-content 1fr;
-    grid-column-gap: 1.5rem;
+  &_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    font-size: 1.6rem;
-    color: $color-grey-light-2;
-
-    &::after,
-    &::before {
-      content: "";
-      height: 1px;
-      display: block;
-      background-color: currentColor;
-    }
   }
 
-  &__seenon-logos {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 3rem;
-    justify-items: center;
-    align-items: center;
+  &_block {
+    // border: 5px dotted red;
+    width: 50%;
+    transform: translate(65%, 50%);
+    margin: 2rem 0;
+    padding-bottom: 3rem;
+  }
 
-    img {
-      max-height: 2.5rem;
-      max-width: 100%;
-      filter: brightness(70%);
-    }
+  &_slogan {
+    color: #F3CF53;
+    font-size: 7.4rem;
+    margin: 0 0 2rem;
+  }
+
+  &_buttons {
+    margin-top: 2rem;
   }
 }
