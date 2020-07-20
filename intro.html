@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="shortcut icon" type="image/png" href="/img/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,700">
+
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+
+
+
     <title> Guesthouse &amp; Tour </title>
   </head>
 
@@ -80,83 +86,110 @@
     </header>
 
 
-    <div class="container-for-sections">
+    <div class="main">
+      <!-- .main {
+        display: flex;
+        flex-direction: column;
+      } -->
 
-      <section class="section section--1">
-        <h2>section 1</h2>
+      <section class="section section_1 section_withDots">
+        <h2>section 1 header</h2>
 
         <div class="intro--1 relaxed-living-room">
-
+          <p>living room</p>
         </div>
 
         <div class="intro--2 relaxed-bedroom">
+          <p>bed room</p>
 
         </div>
 
         <div class="intro--3 food">
-
+          <p>food</p>
         </div>
       </section>
 
 
-      <section class="section section--2 table map">
-        <h2>section 2</h2>
 
-        <div class="table">
-          <table id="table-location">
-            <tr>
-              <th>Company</th>
-              <th>Contact</th>
-              <th>Country</th>
-            </tr>
-            <tr>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
-            </tr>
-            <tr>
-              <td>Ernst Handel</td>
-              <td>Roland Mendel</td>
-              <td>Austria</td>
-            </tr>
-            <tr>
-              <td>Island Trading</td>
-              <td>Helen Bennett</td>
-              <td>UK</td>
-            </tr>
-            <tr>
-              <td>Laughing Bacchus Winecellars</td>
-              <td>Yoshi Tannamuri</td>
-              <td>Canada</td>
-            </tr>
-            <tr>
-              <td>Magazzini Alimentari Riuniti</td>
-              <td>Giovanni Rovelli</td>
-              <td>Italy</td>
-            </tr>
-          </table>
+      <section class="section section_2 section_table_and_map section_withDots">
+
+
+        <h2 class="section_2--header">section 2 header</h2>
+
+
+        <div class="section_2_table_n_map">
+
+
+          <div class="section_2--table section_withDots">
+            <h2>table</h2>
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>NAME</th>
+                  <th>LOCATION</th>
+                  <th>RATING</th>
+                  <th>PRICE</th>
+                  <th>BOOKING</th>
+                </tr>
+                <thead>
+
+                <tbody>
+                  <tr>
+                    <td>HOTEL A</td>
+                    <td>LOC A</td>
+                    <td>4.1</td>
+                    <td>$1999</td>
+                    <td> <a class="btn btn_booking" href="#">Book now</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>HOTEL A</td>
+                    <td>LOC B</td>
+                    <td>4.2</td>
+                    <td>$2999</td>
+                    <td><a class="btn btn_booking" href="#">Book now</a></td>
+                  </tr>
+                  <tr>
+                    <td>HOTEL A</td>
+                    <td>LOC C</td>
+                    <td>4.9</td>
+                    <td>$3999</td>
+                    <td><a class="btn btn_booking" href="#">Book now</a></td>
+                  </tr>
+                </tbody>
+
+            </table>
+          </div>
+
+          <div id="map" class="section_2--map section_withDots" data-locations="[121.5318, 25.0478]">
+            <h2>map</h2>
+          </div>
+
+
         </div>
 
-        <div class="map">
-        </div>
+
 
 
       </section>
 
-      <section id="map" class="section section--3">
-        <h2>section 3</h2>
 
-      </section>
+    </div>
+
+
+    </div>
+
+
+
 
     </div>
 
     <footer class="footer"></footer>
+    <script type="text/javascript" src="public/js/bundle.js">
 
+    </script>
   </body>
 
 </html>

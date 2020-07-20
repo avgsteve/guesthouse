@@ -1,6 +1,20 @@
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 .btn {
   text-transform: uppercase;
-  box-shadow: 1px 3px 5px 1px #000000;
+  box-shadow: 1px 2px 2px 0.2px #000000;
   background-color: transparent;
   border-radius: 42px;
   border: 2px solid #ffffff;
@@ -12,6 +26,12 @@
   padding: 12px 43px;
   text-decoration: none;
   margin-right: 2rem;
+
+  &_booking {
+    font-size: 1.0rem;
+    padding: 2px 18px;
+    color: black;
+  }
 }
 
 .btn:hover {

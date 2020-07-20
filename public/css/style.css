@@ -310,32 +310,90 @@ ORDER: Base + typography > general layout + grid > page layout > components
 .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
   opacity: 1; }
 
-#table-rooms {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+table {
+  border-spacing: 1;
   border-collapse: collapse;
-  width: 100%; }
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative; }
+  table * {
+    position: relative; }
+  table td,
+  table th {
+    padding-left: 8px; }
+  table thead tr {
+    height: 60px;
+    background: #FFED86;
+    font-size: 16px; }
+  table tbody tr {
+    height: 48px;
+    border-bottom: 1px solid #E3F1D5; }
+    table tbody tr:last-child {
+      border: 0; }
+  table td,
+  table th {
+    text-align: left; }
+    table td.l,
+    table th.l {
+      text-align: right; }
+    table td.c,
+    table th.c {
+      text-align: center; }
+    table td.r,
+    table th.r {
+      text-align: center; }
 
-#table-rooms td,
-#table-rooms th {
-  border: 1px solid #ddd;
-  padding: 8px; }
+@media screen and (max-width: 35.5em) {
+  table {
+    display: block; }
+    table > *,
+    table td,
+    table th,
+    table tr {
+      display: block; }
+    table thead {
+      display: none; }
+    table tbody tr {
+      height: auto;
+      padding: 8px 0; }
+      table tbody tr td {
+        padding-left: 45%;
+        margin-bottom: 12px; }
+        table tbody tr td:last-child {
+          margin-bottom: 0; }
+        table tbody tr td:before {
+          position: absolute;
+          font-weight: 700;
+          width: 40%;
+          left: 10px;
+          top: 0; }
+        table tbody tr td:nth-child(1):before {
+          content: "Code"; }
+        table tbody tr td:nth-child(2):before {
+          content: "Stock"; }
+        table tbody tr td:nth-child(3):before {
+          content: "Cap"; }
+        table tbody tr td:nth-child(4):before {
+          content: "Inch"; }
+        table tbody tr td:nth-child(5):before {
+          content: "Box Type"; } }
 
-#table-rooms tr:nth-child(even) {
-  background-color: #f2f2f2; }
+body {
+  background: #9BC86A;
+  font: 400 14px 'Calibri','Arial';
+  padding: 20px; }
 
-#table-rooms tr:hover {
-  background-color: #ddd; }
-
-#table-rooms th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white; }
+blockquote {
+  color: white;
+  text-align: center; }
 
 .btn {
   text-transform: uppercase;
-  box-shadow: 1px 3px 5px 1px #000000;
+  box-shadow: 1px 2px 2px 0.2px #000000;
   background-color: transparent;
   border-radius: 42px;
   border: 2px solid #ffffff;
@@ -347,6 +405,10 @@ ORDER: Base + typography > general layout + grid > page layout > components
   padding: 12px 43px;
   text-decoration: none;
   margin-right: 2rem; }
+  .btn_booking {
+    font-size: 1.0rem;
+    padding: 2px 18px;
+    color: black; }
 
 .btn:hover {
   background-color: transparent; }
@@ -429,10 +491,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   padding: 0;
   box-sizing: inherit; }
 
-::selection {
-  background-color: #55c57a;
-  color: #fff; }
-
 html {
   font-size: 62.5%;
   -webkit-box-sizing: border-box;
@@ -442,27 +500,12 @@ body {
   display: flex;
   flex-direction: column;
   width: 90vw;
-  margin-left: 5vw; }
-
-.container-for-sections {
-  box-sizing: border-box;
-  height: auto;
-  background-size: cover;
-  background-repeat: no-repeat;
+  margin-left: 5vw;
   background-image: linear-gradient(to bottom, #fbfae5, #fcf6e4, #fbf2e4, #f9eee5, #f5ebe5, #f3ebe4, #f1eae3, #efeae3, #ecede3, #e7f0e6, #e2f2ec, #dff4f4); }
 
-section {
-  padding: 5rem 1vw;
-  height: 100vh; }
-  section.section--1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: 100vh; }
-  section.section--2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; }
+.main {
+  display: flex;
+  flex-direction: column; }
 
 .heading-1 {
   font-size: 6.5rem;
@@ -569,16 +612,22 @@ header {
 
 .header_slogan {
   color: #F3CF53;
-  font-size: 7.4rem;
+  font-size: 3.4rem;
   margin: 0 0 2rem; }
+  @media only screen and (max-width: 736px) {
+    .header_slogan {
+      font-size: 2.8rem; } }
+  @media only screen and (max-width: 414px) {
+    .header_slogan {
+      font-size: 2.2rem; } }
 
 .header_buttons {
   margin-top: 2rem; }
 
 .footer {
-  background-color: black;
-  grid-column: full-start / full-end;
-  padding: 8rem; }
+  background-color: grey;
+  padding: 0;
+  height: 10vh; }
 
 .copyright {
   font-size: 1.4rem;
@@ -589,7 +638,47 @@ header {
   text-align: center;
   width: 70%; }
 
+.section {
+  height: 100vh; }
+  .section_withDots {
+    width: auto; }
+  .section_1 {
+    grid-column: 2 / span 2;
+    grid-row: 1/ 2;
+    justify-self: center;
+    text-align: center;
+    margin-bottom: 30px; }
+  .section_2 {
+    display: grid;
+    grid-template-columns: 1em 1fr 1fr 1em;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". . . ." ". . . .";
+    justify-items: stretch;
+    align-items: stretch;
+    align-content: stretch; }
+    .section_2--header {
+      justify-items: stretch;
+      grid-row: 1/ 2;
+      grid-column: 2 / 4;
+      text-align: center; }
+    .section_2_table_n_map {
+      grid-row: 2/ 3;
+      grid-column: 2 / 4;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      margin: 10px 0 30px;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+      padding: 10px; }
+    .section_2--table {
+      width: 50%;
+      margin: 10px 0 20px 10px; }
+    .section_2--map {
+      width: 80%;
+      margin: 10px 0 20px; }
+
 /*
+
 Note in main.scss:
 
 1) use "npm run concat:css" to generate concatinated file

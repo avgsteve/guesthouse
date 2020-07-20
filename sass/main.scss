@@ -19,7 +19,10 @@
 @import "header";
 @import "footer"; //
 //
+//
+@import "layout/sections"; //
 /*
+
 Note in main.scss:
 
 1) use "npm run concat:css" to generate concatinated file
