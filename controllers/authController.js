@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 /*jshint esversion: 8 */
-const User = require('./../models/userModel');
+// const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const AppError = require('./../utils/appError');
@@ -28,7 +28,7 @@ const signToken = id => {
     process.env.JWT_SECRET,
     // fast way to generate quick and easy way to generate JWT secret. In terminal: node -e "console.log(require('crypto').randomBytes(64).toString('hex'));"
     // ref:  https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15065292#questions/8159650
-
+    //
     { //third argument
       expiresIn: process.env.JWT_EXPIRES_IN
     });
